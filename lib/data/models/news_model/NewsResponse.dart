@@ -6,9 +6,10 @@ import 'Articles.dart';
 
 class NewsResponse {
   NewsResponse({
-      this.status, 
-      this.totalResults, 
-      this.articles,});
+    this.status,
+    this.totalResults,
+    this.articles,
+  });
 
   NewsResponse.fromJson(dynamic json) {
     status = json['status'];
@@ -33,5 +34,4 @@ class NewsResponse {
     }
     return map;
   }
-
 }

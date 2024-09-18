@@ -7,13 +7,14 @@ class CarouselNewsWidget extends StatelessWidget {
   final String? imageUrl;
   final String? title;
   final String? articleUrl;
-  const CarouselNewsWidget({super.key, required this.imageUrl, this.title, this.articleUrl});
+  const CarouselNewsWidget(
+      {super.key, required this.imageUrl, this.title, this.articleUrl});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        final Uri url = Uri.parse(articleUrl??"");
+        final Uri url = Uri.parse(articleUrl ?? "");
         if (!await launchUrl(url)) {
           throw Exception('Could not launch $url');
         }

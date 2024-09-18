@@ -11,14 +11,15 @@ import 'Source.dart';
 
 class Articles {
   Articles({
-      this.source, 
-      this.author, 
-      this.title, 
-      this.description, 
-      this.url, 
-      this.urlToImage, 
-      this.publishedAt, 
-      this.content,});
+    this.source,
+    this.author,
+    this.title,
+    this.description,
+    this.url,
+    this.urlToImage,
+    this.publishedAt,
+    this.content,
+  });
 
   Articles.fromJson(dynamic json) {
     source = json['source'] != null ? Source.fromJson(json['source']) : null;
@@ -53,5 +54,4 @@ class Articles {
     map['content'] = content;
     return map;
   }
-
 }

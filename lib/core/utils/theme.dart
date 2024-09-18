@@ -20,6 +20,7 @@ class ThemeManager {
     textTheme: TextTheme(
       titleSmall: TextsStyles.tabsTitleStyles,
       titleLarge: TextsStyles.titleAppStyle,
+      headlineSmall: TextsStyles.descriptionsStyle,
     ),
   );
 }

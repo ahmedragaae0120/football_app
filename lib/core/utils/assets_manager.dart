@@ -1,11 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 class AssetsManager {
   AssetsManager._();
-
-  /// Assets for assets2748558
-  /// assets/2748558.png
-  static const String assetsNotFoundImage = "assets/icons/2748558.png";
-
+  
   /// Assets for assetsIconsChart
   /// assets/icons/Chart.svg
   static const String assetsIconsChart = "assets/icons/Chart.svg";
@@ -18,9 +14,21 @@ class AssetsManager {
   /// assets/icons/Home.svg
   static const String assetsIconsHome = "assets/icons/Home.svg";
 
+  /// Assets for assetsIconsMessage
+  /// assets/icons/Message.svg
+  static const String assetsIconsMessage = "assets/icons/Message.svg";
+
+  /// Assets for assetsIconsNotFoundImage
+  /// assets/icons/NotFoundImage.png
+  static const String assetsNotFoundImage = "assets/icons/NotFoundImage.png";
+
   /// Assets for assetsIconsNotification
   /// assets/icons/Notification.svg
   static const String assetsIconsNotification = "assets/icons/Notification.svg";
+
+  /// Assets for assetsIconsPassword
+  /// assets/icons/Password.svg
+  static const String assetsIconsPassword = "assets/icons/Password.svg";
 
   /// Assets for assetsIconsProfile
   /// assets/icons/Profile.svg
@@ -29,4 +37,13 @@ class AssetsManager {
   /// Assets for assetsIconsSearch
   /// assets/icons/Search.svg
   static const String assetsIconsSearch = "assets/icons/Search.svg";
+
+  /// Assets for assetsImagesImageOnBoard
+  /// assets/images/ImageOnBoard.png
+  static const String assetsImagesOnBoard = "assets/images/ImageOnBoard.png";
+  
+
+    static const String assetsIconsLine= "assets/icons/Line.svg";
+
 }
+

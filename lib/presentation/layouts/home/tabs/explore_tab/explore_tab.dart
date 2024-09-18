@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:football_app/core/constants.dart';
 import 'package:football_app/core/reusable_commponants/custom_appbar.dart';
 import 'package:football_app/core/utils/string_manager.dart';
@@ -35,7 +36,6 @@ class _ExploreTabState extends State<ExploreTab> {
             isLoadingMore = true;
           });
           await context.read<FootballNewsCubit>().getMoreFootballNews();
-
           setState(() {
             isLoadingMore = false;
           });
@@ -97,9 +97,10 @@ class _ExploreTabState extends State<ExploreTab> {
                             ),
                           ),
                           if (isLoadingMore)
-                            const CircularProgressIndicator(
-                              backgroundColor: Colors.transparent,
-                            ),
+                            const SpinKitPulse(
+                              color: Colors.white,
+                              size: 50.0,
+                            )
                         ],
                       ),
                     ),

@@ -15,14 +15,20 @@ import '../../data/datasource_contract/remote/liveMatches_datasource_contract.da
     as _i410;
 import '../../data/datasource_contract/remote/newsfootball_datasource_contract.dart'
     as _i995;
+import '../../data/datasource_contract/remote/Standings_datasource_contract.dart'
+    as _i977;
 import '../../data/datasource_impl/remote/liveMatches_datasource_impl.dart'
     as _i423;
 import '../../data/datasource_impl/remote/newsfootball_datasource_impl.dart'
     as _i73;
+import '../../data/datasource_impl/remote/standings_datasource_impl.dart'
+    as _i46;
 import '../../presentation/layouts/home/tabs/explore_tab/view_model/cubit/football_news_cubit.dart'
     as _i150;
 import '../../presentation/layouts/home/tabs/home_tab/view_model/cubit/live_matches_cubit.dart'
     as _i242;
+import '../../presentation/layouts/home/tabs/standings_tab/view_model/standings_cubit.dart'
+    as _i795;
 import '../api/api_manger.dart' as _i339;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -37,10 +43,14 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.singleton<_i339.ApiManger>(() => _i339.ApiManger());
+    gh.factory<_i977.StandingsDatasourceContract>(
+        () => _i46.StandingsDatasourceImpl(gh<_i339.ApiManger>()));
     gh.factory<_i410.LiveMatchesDatasourceContract>(
         () => _i423.LivematchesDatasourceImpl(gh<_i339.ApiManger>()));
     gh.factory<_i995.NewsfootballDatasourceContract>(
         () => _i73.NewsfootballDatasourceImpl(gh<_i339.ApiManger>()));
+    gh.factory<_i795.StandingsCubit>(
+        () => _i795.StandingsCubit(gh<_i977.StandingsDatasourceContract>()));
     gh.factory<_i242.LiveMatchesCubit>(() =>
         _i242.LiveMatchesCubit(gh<_i410.LiveMatchesDatasourceContract>()));
     gh.factory<_i150.FootballNewsCubit>(() =>

@@ -14,7 +14,7 @@ class NewsfootballDatasourceImpl extends NewsfootballDatasourceContract {
   ApiManger apiManger;
   @override
   Future<Either<List<Articles>, String>> getNewsFootball(
-      {int? pageSize,int? page}) async {
+      {int? pageSize, int? page}) async {
     try {
       var response = await apiManger
           .getRequestNewsApi(endPoints: EndPoints.allNews, queryParameters: {
@@ -22,13 +22,13 @@ class NewsfootballDatasourceImpl extends NewsfootballDatasourceContract {
         "q": "football",
         "language": "en",
         "pageSize": pageSize,
-        "page":page,
+        "page": page,
       });
       List<Articles> listArticles =
           NewsResponse.fromJson(response.data).articles ?? [];
       return Left(listArticles);
     } catch (error) {
-      return right(error.toString());
+      return Right(error.toString());
     }
   }
 }

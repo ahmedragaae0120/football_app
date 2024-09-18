@@ -22,7 +22,7 @@ class ApiManger {
         if (status.hashCode == 426) {
           return false;
         }
-         return status! < 500;
+        return status! < 500;
       },
     ));
   }

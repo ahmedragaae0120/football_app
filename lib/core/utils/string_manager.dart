@@ -6,7 +6,5 @@ class StringManager {
   static const String titleApp = "LiveScore";
   static const String foundLiveMatches =
       "There are no matches to be shown now.";
-    static const String foundAticle =
-      "Not found Aticle ";
-
+  static const String foundAticle = "Not found Aticle ";
 }

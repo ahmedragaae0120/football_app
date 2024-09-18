@@ -5,7 +5,9 @@ import 'package:football_app/core/utils/theme.dart';
 import 'package:football_app/presentation/layouts/home/home_view.dart';
 import 'package:football_app/presentation/layouts/home/tabs/explore_tab/view_model/cubit/football_news_cubit.dart';
 import 'package:football_app/presentation/layouts/home/tabs/home_tab/view_model/cubit/live_matches_cubit.dart';
+import 'package:football_app/presentation/layouts/home/tabs/standings_tab/view_model/standings_cubit.dart';
 import 'package:football_app/presentation/layouts/home/view_model/cubit/home_cubit.dart';
+import 'package:football_app/presentation/layouts/onboarding/onboarding_view.dart';
 
 class Myapp extends StatelessWidget {
   const Myapp({super.key});
@@ -19,18 +21,23 @@ class Myapp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => getIt<LiveMatchesCubit>(),
-          child: Container(),
         ),
         BlocProvider(
           create: (context) => getIt<FootballNewsCubit>(),
-          child: Container(),
-        )
+        ),
+        BlocProvider(
+          create: (context) => getIt<StandingsCubit>(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeManager.darkTheme,
         themeMode: ThemeMode.dark,
-        home: const HomeView(),
+        routes: {
+          HomeView.routeName: (context) => const HomeView(),
+          OnboardingView.routeName: (context) => const OnboardingView(),
+        },
+        initialRoute: OnboardingView.routeName,
       ),
     );
   }

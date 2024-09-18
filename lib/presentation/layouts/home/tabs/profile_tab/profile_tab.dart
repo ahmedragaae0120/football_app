@@ -7,21 +7,34 @@ class ProfileTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        CircleAvatar(
-          child: Image.asset(AssetsManager.assetsNotFoundImage),
-        ),
-        Text(
-          "#liverbool YNWA",
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
-        const CustomListTile(title: "Name", subTitle: "dadad"),
-        const CustomListTile(title: "Email", subTitle: "dadad"),
-        const CustomListTile(title: "Favourite Team", subTitle: "Liverbool"),
-      ],
+    return SafeArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          CircleAvatar(
+            child: Image.asset(
+              AssetsManager.assetsNotFoundImage,
+              fit: BoxFit.contain,
+              height: 100,
+              width: 100,
+            ),
+          ),
+          Text(
+            "#liverbool YNWA",
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          const CustomListTile(title: "Name", subTitle: "dadad"),
+          const SizedBox(
+            height: 20,
+          ),
+          const CustomListTile(title: "Email", subTitle: "dadad"),
+          const SizedBox(
+            height: 20,
+          ),
+          const CustomListTile(title: "Favourite Team", subTitle: "Liverbool"),
+        ],
+      ),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:football_app/core/utils/assets_manager.dart';
 import 'package:football_app/data/models/news_model/Articles.dart';
 import 'package:football_app/presentation/layouts/home/tabs/explore_tab/widgets/descriptionNews_screen.dart';
+import 'package:intl/intl.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class ArticleWidget extends StatelessWidget {
@@ -11,6 +12,8 @@ class ArticleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String formattedDate = DateFormat('yyyy-MM-dd – hh:mm')
+        .format(DateTime.parse(article.publishedAt ?? ""));
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -78,7 +81,7 @@ class ArticleWidget extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    article.publishedAt ?? '',
+                    formattedDate,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context)

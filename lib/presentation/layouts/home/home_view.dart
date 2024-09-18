@@ -11,6 +11,7 @@ import 'package:football_app/presentation/layouts/home/tabs/standings_tab/standi
 import 'package:football_app/presentation/layouts/home/view_model/cubit/home_cubit.dart';
 
 class HomeView extends StatelessWidget {
+  static const String routeName = "/HomeView";
   const HomeView({super.key});
 
   @override

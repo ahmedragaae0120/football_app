@@ -3,8 +3,9 @@
 
 class Source {
   Source({
-      this.id, 
-      this.name,});
+    this.id,
+    this.name,
+  });
 
   Source.fromJson(dynamic json) {
     id = json['id'];
@@ -19,5 +20,4 @@ class Source {
     map['name'] = name;
     return map;
   }
-
 }

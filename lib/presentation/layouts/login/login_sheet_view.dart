@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:football_app/core/constants.dart';
 import 'package:football_app/core/reusable_commponants/custom_textfiled.dart';
 import 'package:football_app/core/utils/assets_manager.dart';
 
@@ -17,15 +20,20 @@ class _LoginSheetViewState extends State<LoginSheetView> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
 
     return Container(
-      color: Theme.of(context).scaffoldBackgroundColor,
+      decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(40), topLeft: Radius.circular(40))),
       width: double.infinity,
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(25),
       child: Form(
         key: formKey,
         child: SingleChildScrollView(
+          padding: EdgeInsets.only(bottom: keyboardHeight),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -33,14 +41,28 @@ class _LoginSheetViewState extends State<LoginSheetView> {
                 onTap: () => Navigator.pop(context),
                 child: SvgPicture.asset(AssetsManager.assetsIconsLine),
               ),
-              Text(
-                "Welcome",
-                style: Theme.of(context).textTheme.titleLarge,
+              InkWell(
+                onTap: () {
+                  log(keyboardHeight.toString());
+                },
+                child: Text(
+                  "Welcome",
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
               ),
               SizedBox(
-                height: height * 0.02,
+                height: screenHeight * 0.02,
               ),
               CustomTextfiled(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "this filed don`t must is empty";
+                  }
+                  if (!RegExp(Constants.regexEmail).hasMatch(value)) {
+                    return "valid Email";
+                  }
+                  return null;
+                },
                 keyboard: TextInputType.emailAddress,
                 controller: emailController,
                 prefixIcon: SvgPicture.asset(
@@ -50,10 +72,19 @@ class _LoginSheetViewState extends State<LoginSheetView> {
                 hintText: "Email",
               ),
               SizedBox(
-                height: height * 0.04,
+                height: screenHeight * 0.04,
               ),
               CustomTextfiled(
-                keyboard: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "this filed don`t must is empty";
+                  }
+                  if (value.length < 8) {
+                    return "valid Email";
+                  }
+                  return null;
+                },
+                keyboard: TextInputType.visiblePassword,
                 controller: passwordController,
                 prefixIcon: SvgPicture.asset(
                   AssetsManager.assetsIconsPassword,
@@ -73,10 +104,12 @@ class _LoginSheetViewState extends State<LoginSheetView> {
                 obscureText: obscurePass,
               ),
               SizedBox(
-                height: height * 0.1,
+                height: screenHeight * 0.1,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (formKey.currentState?.validate() ?? false) {}
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.onSecondary,
                   shape: const RoundedRectangleBorder(

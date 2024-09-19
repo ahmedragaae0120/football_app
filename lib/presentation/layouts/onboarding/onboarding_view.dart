@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:football_app/core/reusable_commponants/custom_textfiled.dart';
 import 'package:football_app/core/utils/assets_manager.dart';
 import 'package:football_app/presentation/layouts/login/login_sheet_view.dart';
 
@@ -11,6 +10,7 @@ class OnboardingView extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -49,6 +49,7 @@ Wait for what? Let’s get start it!''',
                     ElevatedButton(
                       onPressed: () {
                         showModalBottomSheet<void>(
+                          backgroundColor: Colors.transparent,
                           context: context,
                           builder: (context) {
                             return const LoginSheetView();

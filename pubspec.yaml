@@ -109,3 +109,4 @@ flutter_assets:
   assets_path: assets/
   output_path: lib/core/utils
   filename: assets_manager.dart
+  classname: AssetsManager

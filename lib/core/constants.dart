@@ -8,6 +8,8 @@ import 'package:football_app/data/models/fottball_model/Teams.dart';
 import 'package:football_app/data/models/news_model/Articles.dart';
 
 class Constants {
+  static const String regexEmail =
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
   static const String footballApiBaseUrl = "https://v3.football.api-sports.io";
   static const String newsApiBaseUrl = "https://newsapi.org";
   static const String footballapiKey = "484eeb40f50923f4c8eb964c69d3182d";

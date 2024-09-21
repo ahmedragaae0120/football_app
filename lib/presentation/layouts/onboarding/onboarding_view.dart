@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:football_app/core/utils/assets_manager.dart';
 import 'package:football_app/presentation/layouts/login/login_sheet_view.dart';
+import 'package:football_app/presentation/layouts/register/register_view.dart';
 
 class OnboardingView extends StatelessWidget {
   static const String routeName = "/OnboardingView";
@@ -9,7 +10,10 @@ class OnboardingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    GlobalKey<ScaffoldState> scafoldKey = GlobalKey<ScaffoldState>();
+
     return Scaffold(
+      key: scafoldKey,
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
@@ -52,7 +56,9 @@ Wait for what? Let’s get start it!''',
                           backgroundColor: Colors.transparent,
                           context: context,
                           builder: (context) {
-                            return const LoginSheetView();
+                            return LoginSheetView(
+                              mainContext: scafoldKey,
+                            );
                           },
                         );
                       },
@@ -74,7 +80,9 @@ Wait for what? Let’s get start it!''',
                       ),
                     ),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, RegisterView.routeName);
+                        },
                         child: Text(
                           "Sign Up",
                           style: Theme.of(context)

@@ -5,7 +5,8 @@ import 'package:football_app/core/utils/texts_styles.dart';
 class ThemeManager {
   static ThemeData? darkTheme = ThemeData(
     scaffoldBackgroundColor: const Color(0xff181829),
-    appBarTheme: const AppBarTheme(foregroundColor: Colors.white),
+    appBarTheme: const AppBarTheme(
+        foregroundColor: Colors.white, backgroundColor: Colors.transparent),
     colorScheme: ColorScheme.fromSeed(
       seedColor: const Color(0xff2B2B3D),
       primary: AppColorsDark.primaryColor,

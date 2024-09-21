@@ -7,7 +7,10 @@ import 'package:football_app/presentation/layouts/home/tabs/explore_tab/view_mod
 import 'package:football_app/presentation/layouts/home/tabs/home_tab/view_model/cubit/live_matches_cubit.dart';
 import 'package:football_app/presentation/layouts/home/tabs/standings_tab/view_model/standings_cubit.dart';
 import 'package:football_app/presentation/layouts/home/view_model/cubit/home_cubit.dart';
+import 'package:football_app/presentation/layouts/login/view_model/cubit/login_cubit.dart';
 import 'package:football_app/presentation/layouts/onboarding/onboarding_view.dart';
+import 'package:football_app/presentation/layouts/register/register_view.dart';
+import 'package:football_app/presentation/layouts/register/view_model/cubit/register_cubit.dart';
 
 class Myapp extends StatelessWidget {
   const Myapp({super.key});
@@ -16,6 +19,12 @@ class Myapp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => LoginCubit(),
+        ),
+        BlocProvider(
+          create: (context) => RegisterCubit(),
+        ),
         BlocProvider(
           create: (context) => HomeCubit(),
         ),
@@ -36,6 +45,7 @@ class Myapp extends StatelessWidget {
         routes: {
           HomeView.routeName: (context) => const HomeView(),
           OnboardingView.routeName: (context) => const OnboardingView(),
+          RegisterView.routeName: (context) => const RegisterView(),
         },
         initialRoute: OnboardingView.routeName,
       ),

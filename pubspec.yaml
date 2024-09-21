@@ -49,6 +49,8 @@ dependencies:
   url_launcher: ^6.3.0
   intl: ^0.19.0
   flutter_spinkit: ^5.2.1
+  firebase_core: ^3.5.0
+  firebase_auth: ^5.3.0
 
 dev_dependencies:
   injectable_generator:

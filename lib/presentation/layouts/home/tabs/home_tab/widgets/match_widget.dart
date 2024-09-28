@@ -1,15 +1,14 @@
-import 'dart:async';
+import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:football_app/core/utils/assets_manager.dart';
 import 'package:football_app/data/models/fottball_model/Response.dart';
-import 'package:football_app/presentation/layouts/home/tabs/home_tab/widgets/statistics_view.dart';
+import 'package:football_app/presentation/layouts/statistics/statistics_view.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class MatchWidget extends StatefulWidget {
-  final Response match;
+  final FootballResponse match;
   const MatchWidget({super.key, required this.match});
 
   @override
@@ -17,69 +16,74 @@ class MatchWidget extends StatefulWidget {
 }
 
 class _MatchWidgetState extends State<MatchWidget> {
-  Timer? timer; // المؤقت
-  int elapsedMinutes = 0; // الدقيقة التي يتم تحديثها
-  @override
-  void initState() {
-    super.initState();
-    elapsedMinutes = widget.match.fixture?.status?.elapsed ?? 0;
-    timer = Timer.periodic(const Duration(minutes: 1), (timer) {
-      setState(() {
-        elapsedMinutes++; // زيادة الدقيقة كل دقيقة
-      });
-    });
-  }
+  // Timer? timer; // المؤقت
+  // int elapsedMinutes = 0; // الدقيقة التي يتم تحديثها
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   elapsedMinutes = widget.match.fixture?.status?.elapsed ?? 0;
+  //   timer = Timer.periodic(const Duration(minutes: 1), (timer) {
+  //     setState(() {
+  //       elapsedMinutes++; // زيادة الدقيقة كل دقيقة
+  //     });
+  //   });
+  // }
 
-  @override
-  void dispose() {
-    timer?.cancel(); // إلغاء المؤقت عند التخلص من الويدجت
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   timer?.cancel(); // إلغاء المؤقت عند التخلص من الويدجت
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            CachedNetworkImage(
-              imageUrl: widget.match.league?.logo ?? "",
-              width: 30,
-              fit: BoxFit.contain,
-              progressIndicatorBuilder: (context, url, downloadProgress) =>
-                  Skeletonizer(
-                enabled: true,
-                child: Container(
-                  color: Colors.grey,
-                  width: 30,
-                  height: 30,
-                ),
-              ),
-              errorWidget: (context, url, error) =>
-                  Image.asset(AssetsManager.assetsNotFoundImage),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(
-              widget.match.league?.name ?? "",
-              style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSecondary,
-                  fontSize: 20),
-            ),
-          ],
-        ),
+        // Row(
+        //   children: [
+        //     CachedNetworkImage(
+        //       imageUrl: widget.match.league?.logo ?? "",
+        //       width: 30,
+        //       fit: BoxFit.contain,
+        //       progressIndicatorBuilder: (context, url, downloadProgress) =>
+        //           Skeletonizer(
+        //         enabled: true,
+        //         child: Container(
+        //           color: Colors.grey,
+        //           width: 30,
+        //           height: 30,
+        //         ),
+        //       ),
+        //       errorWidget: (context, url, error) =>
+        //           Image.asset(AssetsManager.assetsNotFoundImage),
+        //     ),
+        //     const SizedBox(
+        //       width: 10,
+        //     ),
+        //     Text(
+        //       widget.match.league?.name ?? "",
+        //       style: TextStyle(
+        //           color: Theme.of(context).colorScheme.onSecondary,
+        //           fontSize: 20),
+        //     ),
+        //   ],
+        // ),
         InkWell(
           onTap: () {
+            log(widget.match.fixture?.id.toString() ?? "");
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => StatisticsView(match: widget.match),
+                  builder: (context) => StatisticsView(
+                    fixtureId: widget.match.fixture?.id ?? 0,
+                    match: widget.match,
+                  ),
                 ));
           },
           child: Container(
             padding: const EdgeInsets.only(left: 10),
+            margin: const EdgeInsets.only(bottom: 8),
             height: 100,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),

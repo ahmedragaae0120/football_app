@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:football_app/MyApp.dart';
 import 'package:football_app/core/Di/di.dart';
 import 'package:football_app/core/api/api_manger.dart';
+import 'package:football_app/core/local/shared_preferences_helper.dart';
 import 'package:football_app/firebase_options.dart';
+import 'package:football_app/presentation/layouts/home/view_model/cubit/home_cubit.dart';
 import 'package:football_app/presentation/observer/BlocObserver.dart';
 
 void main() async {
@@ -13,7 +15,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  SharedPreferencesHelper.init();
   Bloc.observer = MyBlocObserver();
   ApiManger.init();
-  runApp(const Myapp());
+  runApp(BlocProvider(
+    create: (context) => HomeCubit()..cheekAuth(),
+    child: const Myapp(),
+  ));
 }

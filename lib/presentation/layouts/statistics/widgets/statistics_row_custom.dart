@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class StatisticsRowCustom extends StatelessWidget {
-  final int home;
+  final dynamic home;
   final String statisticsName;
-  final int away;
+  final dynamic away;
   const StatisticsRowCustom(
       {super.key,
       required this.home,

@@ -1,10 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:football_app/core/utils/assets_manager.dart';
 import 'package:football_app/data/models/standings_model/standings/response.dart';
 import 'package:football_app/presentation/layouts/home/tabs/standings_tab/view_model/standings_cubit.dart';
 import 'package:football_app/presentation/layouts/home/tabs/standings_tab/widgets/standings_widget.dart';
+import 'package:lottie/lottie.dart';
 
 class StandingsTab extends StatefulWidget {
   const StandingsTab({super.key});
@@ -47,13 +47,11 @@ class _StandingsTabState extends State<StandingsTab> {
               style: Theme.of(context).textTheme.titleLarge,
             ));
           }
-          return Expanded(
-            child: ListView.builder(
-              itemBuilder: (context, index) {
-                return StandingsWidget(standing: listSatndings[index]![0]);
-              },
-              itemCount: listSatndings.length,
-            ),
+          return ListView.builder(
+            itemBuilder: (context, index) {
+              return StandingsWidget(standing: listSatndings[index]![0]);
+            },
+            itemCount: listSatndings.length,
           );
         }
         if (state is StandingsErrorState) {
@@ -80,7 +78,9 @@ class _StandingsTabState extends State<StandingsTab> {
         //     //   _buildStandingsSection('Serie A', state.serieAOfStandings),
         //   ],
         // );
-        return const CircularProgressIndicator.adaptive();
+        return Center(
+          child: Lottie.asset(AssetsManager.assetIconsAnimation),
+        );
       },
     );
   }

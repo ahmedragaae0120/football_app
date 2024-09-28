@@ -12,8 +12,8 @@ import 'Events.dart';
 /// score : {"halftime":{"home":3,"away":1},"fulltime":{"home":null,"away":null},"extratime":{"home":null,"away":null},"penalty":{"home":null,"away":null}}
 /// events : [{"time":{"elapsed":12,"extra":null},"team":{"id":20086,"name":"Sheffield United U21","logo":"https://media.api-sports.io/football/teams/20086.png"},"player":{"id":288065,"name":"H. Boyes"},"assist":{"id":null,"name":null},"type":"Goal","detail":"Normal Goal","comments":null},{"time":{"elapsed":19,"extra":null},"team":{"id":20086,"name":"Sheffield United U21","logo":"https://media.api-sports.io/football/teams/20086.png"},"player":{"id":18331,"name":"R. Norrington-Davies"},"assist":{"id":null,"name":null},"type":"Goal","detail":"Normal Goal","comments":null},{"time":{"elapsed":21,"extra":null},"team":{"id":20019,"name":"Watford U21","logo":"https://media.api-sports.io/football/teams/20019.png"},"player":{"id":18331,"name":"R. Norrington-Davies"},"assist":{"id":null,"name":null},"type":"Goal","detail":"Own Goal","comments":null},{"time":{"elapsed":23,"extra":null},"team":{"id":20086,"name":"Sheffield United U21","logo":"https://media.api-sports.io/football/teams/20086.png"},"player":{"id":null,"name":"R. One"},"assist":{"id":null,"name":null},"type":"Goal","detail":"Normal Goal","comments":null}]
 
-class Response {
-  Response({
+class FootballResponse {
+  FootballResponse({
     this.fixture,
     this.league,
     this.teams,
@@ -22,7 +22,7 @@ class Response {
     this.events,
   });
 
-  Response.fromJson(dynamic json) {
+  FootballResponse.fromJson(dynamic json) {
     fixture =
         json['fixture'] != null ? Fixture.fromJson(json['fixture']) : null;
     league = json['league'] != null ? League.fromJson(json['league']) : null;

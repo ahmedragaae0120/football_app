@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 class AssetsManager {
   AssetsManager._();
-  
+
   /// Assets for assetsIconsChart
   /// assets/icons/Chart.svg
   static const String assetsIconsChart = "assets/icons/Chart.svg";
@@ -41,9 +41,8 @@ class AssetsManager {
   /// Assets for assetsImagesImageOnBoard
   /// assets/images/ImageOnBoard.png
   static const String assetsImagesOnBoard = "assets/images/ImageOnBoard.png";
-  
 
-    static const String assetsIconsLine= "assets/icons/Line.svg";
-
+  static const String assetsIconsLine = "assets/icons/Line.svg";
+  static const String assetIconsAnimation = "assets/icons/Animation.json";
+  static const String assetIconsAnimationStadium ="assets/icons/AnimationStadium.json";
 }
-

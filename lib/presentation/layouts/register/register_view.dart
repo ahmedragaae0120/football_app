@@ -170,10 +170,11 @@ class _RegisterViewState extends State<RegisterView> {
                       height: screenHeight * 0.1,
                     ),
                     ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (formKey.currentState?.validate() ?? false) {
-                          BlocProvider.of<RegisterCubit>(context).register(
-                              emailController.text, passwordController.text);
+                          await BlocProvider.of<RegisterCubit>(context)
+                              .register(emailController.text,
+                                  passwordController.text, nameController.text);
                         }
                       },
                       style: ElevatedButton.styleFrom(

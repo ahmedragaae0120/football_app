@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:football_app/core/utils/assets_manager.dart';
 import 'package:football_app/data/models/standings_model/standings/response.dart';
 import 'package:football_app/data/models/standings_model/standings/standing.dart';
+import 'package:football_app/presentation/layouts/home/tabs/standings_tab/widgets/all_standings_view.dart';
 import 'package:football_app/presentation/layouts/home/tabs/standings_tab/widgets/standings_team_widget.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -21,40 +22,47 @@ class StandingsWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
-            ListTile(
-              leading: CachedNetworkImage(
-                imageUrl: standing.league?.logo ?? "",
-                width: 30,
-                fit: BoxFit.contain,
-                progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    Skeletonizer(
-                  enabled: true,
-                  child: Container(
-                    color: Colors.grey,
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          AllStandingsView(standing: standing),
+                    ));
+              },
+              child: ListTile(
+                  leading: CachedNetworkImage(
+                    imageUrl: standing.league?.logo ?? "",
                     width: 30,
-                    height: 30,
+                    fit: BoxFit.contain,
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) => Skeletonizer(
+                      enabled: true,
+                      child: Container(
+                        color: Colors.grey,
+                        width: 30,
+                        height: 30,
+                      ),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        Image.asset(AssetsManager.assetsNotFoundImage),
                   ),
-                ),
-                errorWidget: (context, url, error) =>
-                    Image.asset(AssetsManager.assetsNotFoundImage),
-              ),
-              title: Text(
-                standing.league?.name ?? "",
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge!
-                    .copyWith(fontSize: 16),
-              ),
-              subtitle: Text(
-                standing.league?.country ?? "",
-                style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    fontSize: 12,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.normal),
-              ),
-              trailing: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
+                  title: Text(
+                    standing.league?.name ?? "",
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge!
+                        .copyWith(fontSize: 16),
+                  ),
+                  subtitle: Text(
+                    standing.league?.country ?? "",
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        fontSize: 12,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.normal),
+                  ),
+                  trailing: Icon(
                     Icons.arrow_forward_ios_rounded,
                     color: Theme.of(context).colorScheme.onPrimary,
                   )),
@@ -144,8 +152,10 @@ class StandingsWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 15),
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemBuilder: (context, index) =>
-                  StandingsTeamWidget(standing: listOfStandings[index]),
+              itemBuilder: (context, index) => StandingsTeamWidget(
+                standing: listOfStandings[index],
+                index: index,
+              ),
               itemCount: 4,
               separatorBuilder: (BuildContext context, int index) =>
                   const SizedBox(

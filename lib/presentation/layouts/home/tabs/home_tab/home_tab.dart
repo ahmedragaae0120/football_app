@@ -6,9 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:football_app/core/constants.dart';
 import 'package:football_app/core/reusable_commponants/custom_appbar.dart';
 import 'package:football_app/presentation/layouts/home/tabs/explore_tab/view_model/cubit/football_news_cubit.dart';
+import 'package:football_app/presentation/layouts/home/tabs/home_tab/view_model/live_match_cubit/live_matches_cubit.dart';
 import 'package:football_app/presentation/layouts/home/tabs/home_tab/widgets/Matches_listview_separated.dart';
 import 'package:football_app/core/utils/string_manager.dart';
-import 'package:football_app/presentation/layouts/home/tabs/home_tab/view_model/cubit/live_matches_cubit.dart';
+import 'package:football_app/presentation/layouts/home/tabs/home_tab/widgets/matches_by_league_widget.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class HomeTab extends StatefulWidget {
@@ -57,6 +58,15 @@ class _HomeTabState extends State<HomeTab> {
               ),
               Expanded(
                 child: BlocBuilder<LiveMatchesCubit, LiveMatchesState>(
+                  buildWhen: (previous, current) {
+                    if (current is LiveMatchesErrorState ||
+                        current is LiveMatchesLoadingState ||
+                        current is LiveMatchesSuccessState ||
+                        current is LiveMatchesInitial) {
+                      return true;
+                    }
+                    return false;
+                  },
                   builder: (context, state) {
                     if (state is LiveMatchesErrorState) {
                       return Center(child: Text(state.error));
@@ -70,8 +80,7 @@ class _HomeTabState extends State<HomeTab> {
                                     .read<LiveMatchesCubit>()
                                     .refreshLiveMatches();
                               },
-                              child: MatchesListviewSeparated(
-                                  list: state.liveMatchesResponse))
+                              child: MatchesByLeagueWidget(matches: state.liveMatchesResponse))
                           : Center(
                               child: Text(
                               StringManager.foundLiveMatches,

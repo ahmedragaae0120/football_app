@@ -35,7 +35,7 @@ class LiveMatchesResponse {
     if (json['response'] != null) {
       response = [];
       json['response'].forEach((v) {
-        response?.add(Response.fromJson(v));
+        response?.add(FootballResponse.fromJson(v));
       });
     }
   }
@@ -44,7 +44,7 @@ class LiveMatchesResponse {
   List<dynamic>? errors;
   int? results;
   Paging? paging;
-  List<Response>? response;
+  List<FootballResponse>? response;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

@@ -1,6 +1,5 @@
 part of 'register_cubit.dart';
 
-
 abstract class RegisterState {}
 
 final class RegisterInitial extends RegisterState {}

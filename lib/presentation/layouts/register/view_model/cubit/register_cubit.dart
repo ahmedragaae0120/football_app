@@ -1,12 +1,16 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:football_app/core/firebase/firestore_helper.dart';
+import 'package:football_app/core/local/shared_preferences_helper.dart';
 
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());
 
-  Future<void> register(String email, String password) async {
+  Future<void> register(String email, String password, String name) async {
     emit(RegisterLoadingState());
     try {
       final credential =
@@ -14,6 +18,9 @@ class RegisterCubit extends Cubit<RegisterState> {
         email: email,
         password: password,
       );
+      await FirestoreHelper.addUser(
+          name: name, email: email, id: credential.user!.uid);
+      await SharedPreferencesHelper.setId(credential.user!.uid);
       emit(RegisterSuccessState());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -22,6 +29,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         emit(RegisterFailedState('The account already exists for that email.'));
       }
     } catch (error) {
+      log(error.toString());
       emit(RegisterFailedState(error.toString()));
     }
   }

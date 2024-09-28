@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:football_app/core/local/shared_preferences_helper.dart';
 
 part 'login_state.dart';
 
@@ -15,6 +16,7 @@ class LoginCubit extends Cubit<LoginState> {
         email: email,
         password: password,
       );
+      await SharedPreferencesHelper.setId(credential.user!.uid);
       emit(LoginSuccessState());
     } on FirebaseAuthException catch (e) {
       print('Error code: ${e.code}'); // طباعة كود الخطأ لتتبعه
@@ -33,4 +35,14 @@ class LoginCubit extends Cubit<LoginState> {
       emit(LoginFailedState(error.toString()));
     }
   }
+
+  // Future<void> updateUserData(String userId) async {
+  //   try {
+  //     UserModel? databaseUser =
+  //         await FirestoreHelper.getUser(userId);
+  //     emit(LoginSuccessState(databaseUser));
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 }

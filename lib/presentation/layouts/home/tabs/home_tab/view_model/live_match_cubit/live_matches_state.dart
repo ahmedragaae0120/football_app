@@ -5,7 +5,7 @@ abstract class LiveMatchesState {}
 final class LiveMatchesInitial extends LiveMatchesState {}
 
 final class LiveMatchesSuccessState extends LiveMatchesState {
-  List<Response> liveMatchesResponse;
+  List<FootballResponse> liveMatchesResponse;
   LiveMatchesSuccessState(this.liveMatchesResponse);
 }
 

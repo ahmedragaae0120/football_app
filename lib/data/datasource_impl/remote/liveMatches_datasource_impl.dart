@@ -14,16 +14,17 @@ class LivematchesDatasourceImpl extends LiveMatchesDatasourceContract {
   LivematchesDatasourceImpl(this.apiManger);
   ApiManger apiManger;
   @override
-  Future<Either<List<Response>, String>> getAllLivematches() async {
+  Future<Either<List<FootballResponse>, String>> getAllLivematches() async {
     try {
       var response = await apiManger.getRequestFootballApi(
           endPoints: EndPoints.liveAllMatchesEndPoint,
           queryParameters: {
-            "live": "all",
+            "live": "39-140-78-61-135",
           });
       LiveMatchesResponse liveMatchesResponse =
           LiveMatchesResponse.fromJson(response.data);
-      List<Response> listLiveMatches = liveMatchesResponse.response ?? [];
+      List<FootballResponse> listLiveMatches =
+          liveMatchesResponse.response ?? [];
       log('listLiveMatches: $listLiveMatches ');
       return Left(listLiveMatches);
     } catch (error) {

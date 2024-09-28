@@ -4,7 +4,9 @@ import 'package:football_app/core/Di/di.dart';
 import 'package:football_app/core/utils/theme.dart';
 import 'package:football_app/presentation/layouts/home/home_view.dart';
 import 'package:football_app/presentation/layouts/home/tabs/explore_tab/view_model/cubit/football_news_cubit.dart';
-import 'package:football_app/presentation/layouts/home/tabs/home_tab/view_model/cubit/live_matches_cubit.dart';
+import 'package:football_app/presentation/layouts/home/tabs/home_tab/view_model/live_match_cubit/live_matches_cubit.dart';
+import 'package:football_app/presentation/layouts/statistics/view_Model/statistics_match_cubit/statisticsmatch_cubit.dart';
+import 'package:football_app/presentation/layouts/home/tabs/profile_tab/view_model/cubit/profile_cubit.dart';
 import 'package:football_app/presentation/layouts/home/tabs/standings_tab/view_model/standings_cubit.dart';
 import 'package:football_app/presentation/layouts/home/view_model/cubit/home_cubit.dart';
 import 'package:football_app/presentation/layouts/login/view_model/cubit/login_cubit.dart';
@@ -26,10 +28,13 @@ class Myapp extends StatelessWidget {
           create: (context) => RegisterCubit(),
         ),
         BlocProvider(
-          create: (context) => HomeCubit(),
+          create: (context) => ProfileCubit(),
         ),
         BlocProvider(
           create: (context) => getIt<LiveMatchesCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<StatisticsmatchCubit>(),
         ),
         BlocProvider(
           create: (context) => getIt<FootballNewsCubit>(),
@@ -47,7 +52,7 @@ class Myapp extends StatelessWidget {
           OnboardingView.routeName: (context) => const OnboardingView(),
           RegisterView.routeName: (context) => const RegisterView(),
         },
-        initialRoute: OnboardingView.routeName,
+        initialRoute: HomeCubit.get(context).startRoute,
       ),
     );
   }

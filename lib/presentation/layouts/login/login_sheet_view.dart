@@ -33,7 +33,11 @@ class _LoginSheetViewState extends State<LoginSheetView> {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccessState) {
-          Navigator.pushNamed(context, HomeView.routeName);
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            HomeView.routeName,
+            (route) => false,
+          );
           CustomSnackBar.showOverlaySnackBar(
               context: context, message: "Login Success", positive: true);
         }

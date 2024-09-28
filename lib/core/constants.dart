@@ -15,8 +15,8 @@ class Constants {
   static const String footballapiKey = "484eeb40f50923f4c8eb964c69d3182d";
   static const String newsApiKey = "e95fceda6d274d78bade4ba56ba9191b";
 
-  static List<Response> getDummymatchWidget = [
-    Response(
+  static List<FootballResponse> getDummymatchWidget = [
+    FootballResponse(
       goals: Goals(away: 5, home: 2),
       fixture: Fixture(date: "6546565"),
       score: Score(fulltime: Fulltime(away: 15, home: 15)),
@@ -24,7 +24,7 @@ class Constants {
         away: Away(name: "dasdada", logo: "sdadasdadasdsad"),
       ),
     ),
-    Response(
+    FootballResponse(
       goals: Goals(away: 5, home: 2),
       fixture: Fixture(date: "6546565"),
       score: Score(fulltime: Fulltime(away: 15, home: 15)),
@@ -32,7 +32,7 @@ class Constants {
         away: Away(name: "dasdada", logo: "sdadasdadasdsad"),
       ),
     ),
-    Response(
+    FootballResponse(
       goals: Goals(away: 5, home: 2),
       fixture: Fixture(date: "6546565"),
       score: Score(fulltime: Fulltime(away: 15, home: 15)),
@@ -40,7 +40,7 @@ class Constants {
         away: Away(name: "dasdada", logo: "sdadasdadasdsad"),
       ),
     ),
-    Response(
+    FootballResponse(
       goals: Goals(away: 5, home: 2),
       fixture: Fixture(date: "6546565"),
       score: Score(fulltime: Fulltime(away: 15, home: 15)),

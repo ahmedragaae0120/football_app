@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:football_app/core/utils/assets_manager.dart';
 import 'package:football_app/data/models/fottball_model/Response.dart';
 import 'package:football_app/data/models/statisticsmatch_model/statisticsmatchresponse/response.dart';
+import 'package:football_app/presentation/layouts/statistics/widgets/events_Builder.dart';
 import 'package:football_app/presentation/layouts/statistics/widgets/statistics_row_custom.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -118,8 +119,23 @@ class StatisticsWidget extends StatelessWidget {
                 ),
               ],
             ),
+            EventsBuilder(
+              events: match.events,
+              match: match,
+            ),
             const SizedBox(
-              height: 50,
+              height: 10,
+            ),
+            Text(
+              "Statistics Match: ",
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge!
+                  .copyWith(color: Theme.of(context).colorScheme.onSecondary),
+            ),
+            const SizedBox(
+              height: 10,
             ),
             StatisticsRowCustom(
               home: statisticsList[0].statistics[2].value,
@@ -181,6 +197,9 @@ class StatisticsWidget extends StatelessWidget {
               home: statisticsList[0].statistics[15].value,
               statisticsName: statisticsList[0].statistics[15].type,
               away: statisticsList[1].statistics[15].value,
+            ),
+            const SizedBox(
+              height: 20,
             ),
           ],
         ),

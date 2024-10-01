@@ -58,6 +58,8 @@ dependencies:
   firebase_storage: ^12.3.1
   shared_preferences: ^2.3.2
   search_app_bar_page: ^2.3.1
+  font_awesome_flutter: ^10.7.0
+  searchable_listview: ^2.15.2
 
 dev_dependencies:
   injectable_generator:

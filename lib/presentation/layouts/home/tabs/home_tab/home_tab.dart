@@ -61,8 +61,7 @@ class _HomeTabState extends State<HomeTab> {
                   buildWhen: (previous, current) {
                     if (current is LiveMatchesErrorState ||
                         current is LiveMatchesLoadingState ||
-                        current is LiveMatchesSuccessState ||
-                        current is LiveMatchesInitial) {
+                        current is LiveMatchesSuccessState) {
                       return true;
                     }
                     return false;
@@ -80,7 +79,8 @@ class _HomeTabState extends State<HomeTab> {
                                     .read<LiveMatchesCubit>()
                                     .refreshLiveMatches();
                               },
-                              child: MatchesByLeagueWidget(matches: state.liveMatchesResponse))
+                              child: MatchesByLeagueWidget(
+                                  matches: state.liveMatchesResponse))
                           : Center(
                               child: Text(
                               StringManager.foundLiveMatches,

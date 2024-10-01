@@ -30,11 +30,18 @@ class FootballResponse {
     goals = json['goals'] != null ? Goals.fromJson(json['goals']) : null;
     score = json['score'] != null ? Score.fromJson(json['score']) : null;
     if (json['events'] != null) {
-      events = [];
-      json['events'].forEach((v) {
-        events?.add(Events.fromJson(v));
-      });
+      events = (json['events'] as List)
+          .map((eventJson) => Events.fromJson(eventJson))
+          .where((event) => event.type == "Goal")
+          .toList();
     }
+
+    // if (json['events'] != null) {
+    //   events = [];
+    //   json['events'].forEach((v) {
+    //     events?.add(Events.fromJson(v));
+    //   });
+    // }
   }
   Fixture? fixture;
   League? league;

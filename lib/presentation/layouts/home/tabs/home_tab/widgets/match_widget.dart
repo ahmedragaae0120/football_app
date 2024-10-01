@@ -40,35 +40,6 @@ class _MatchWidgetState extends State<MatchWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Row(
-        //   children: [
-        //     CachedNetworkImage(
-        //       imageUrl: widget.match.league?.logo ?? "",
-        //       width: 30,
-        //       fit: BoxFit.contain,
-        //       progressIndicatorBuilder: (context, url, downloadProgress) =>
-        //           Skeletonizer(
-        //         enabled: true,
-        //         child: Container(
-        //           color: Colors.grey,
-        //           width: 30,
-        //           height: 30,
-        //         ),
-        //       ),
-        //       errorWidget: (context, url, error) =>
-        //           Image.asset(AssetsManager.assetsNotFoundImage),
-        //     ),
-        //     const SizedBox(
-        //       width: 10,
-        //     ),
-        //     Text(
-        //       widget.match.league?.name ?? "",
-        //       style: TextStyle(
-        //           color: Theme.of(context).colorScheme.onSecondary,
-        //           fontSize: 20),
-        //     ),
-        //   ],
-        // ),
         InkWell(
           onTap: () {
             log(widget.match.fixture?.id.toString() ?? "");

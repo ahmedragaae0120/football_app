@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:football_app/core/reusable_commponants/custom_search_delegate.dart';
 import 'package:football_app/core/utils/assets_manager.dart';
 import 'package:football_app/core/utils/string_manager.dart';
 
@@ -20,14 +21,19 @@ class CustomAppbar {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Transform.scale(
-              scale: 1.2,
-              alignment: Alignment.center,
-              child: SvgPicture.asset(
-                AssetsManager.assetsIconsSearch,
-                color: Theme.of(context).colorScheme.onPrimary,
-                fit: BoxFit.contain,
+            InkWell(
+              onTap: () {
+                showSearch(context: context, delegate: CustomSearchDelegate());
+              },
+              child: Transform.scale(
+                scale: 1.2,
                 alignment: Alignment.center,
+                child: SvgPicture.asset(
+                  AssetsManager.assetsIconsSearch,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                  fit: BoxFit.contain,
+                  alignment: Alignment.center,
+                ),
               ),
             ),
             const SizedBox(

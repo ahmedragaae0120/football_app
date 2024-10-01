@@ -9,7 +9,7 @@ import 'package:football_app/presentation/layouts/statistics/widgets/statistics_
 import 'package:lottie/lottie.dart';
 
 class StatisticsView extends StatefulWidget {
-  static const String routeName = "/StatisticsView";
+  // static const String routeName = "/StatisticsView";
   final int fixtureId;
   final FootballResponse match;
   const StatisticsView(

@@ -6,7 +6,9 @@ class ThemeManager {
   static ThemeData? darkTheme = ThemeData(
     scaffoldBackgroundColor: const Color(0xff181829),
     appBarTheme: const AppBarTheme(
-        foregroundColor: Colors.white, backgroundColor: Colors.transparent),
+      foregroundColor: Colors.white,
+      backgroundColor: Colors.transparent,
+    ),
     colorScheme: ColorScheme.fromSeed(
       seedColor: const Color(0xff2B2B3D),
       primary: AppColorsDark.primaryColor,

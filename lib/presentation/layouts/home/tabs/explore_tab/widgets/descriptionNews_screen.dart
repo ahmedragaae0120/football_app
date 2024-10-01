@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:football_app/core/reusable_commponants/custom_appbar.dart';
 import 'package:football_app/core/utils/assets_manager.dart';
 import 'package:football_app/data/models/news_model/Articles.dart';
 import 'package:intl/intl.dart';
@@ -14,7 +13,7 @@ class DescriptionScreen extends StatelessWidget {
     String formattedDate = DateFormat('yyyy-MM-dd – hh:mm')
         .format(DateTime.parse(article.publishedAt ?? ""));
     return Scaffold(
-      appBar: CustomAppbar.customAppbar(context),
+      appBar: AppBar(),
       body: Column(
         children: [
           AspectRatio(

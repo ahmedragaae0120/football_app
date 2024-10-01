@@ -15,3 +15,16 @@ final class FootballNewsErrorState extends FootballNewsState {
 }
 
 final class FootballNewsLoadingState extends FootballNewsState {}
+
+
+final class SearchNewsSuccessState extends FootballNewsState {
+  List<Articles> listOfArticles;
+  SearchNewsSuccessState(this.listOfArticles);
+}
+
+final class SearchNewsErrorState extends FootballNewsState {
+  String error;
+  SearchNewsErrorState(this.error);
+}
+
+final class SearchNewsLoadingState extends FootballNewsState {}

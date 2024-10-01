@@ -44,5 +44,8 @@ class AssetsManager {
 
   static const String assetsIconsLine = "assets/icons/Line.svg";
   static const String assetIconsAnimation = "assets/icons/Animation.json";
-  static const String assetIconsAnimationStadium ="assets/icons/AnimationStadium.json";
+  static const String assetIconsAnimationStadium =
+      "assets/icons/AnimationStadium.json";
+  static const String assetIconssoccerballvariant =
+      "assets/icons/soccerballvariant.png";
 }

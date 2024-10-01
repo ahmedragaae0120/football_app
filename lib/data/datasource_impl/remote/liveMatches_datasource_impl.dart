@@ -19,7 +19,7 @@ class LivematchesDatasourceImpl extends LiveMatchesDatasourceContract {
       var response = await apiManger.getRequestFootballApi(
           endPoints: EndPoints.liveAllMatchesEndPoint,
           queryParameters: {
-            "live": "39-140-78-61-135",
+            "live": "39-140-78-61-135-2",
           });
       LiveMatchesResponse liveMatchesResponse =
           LiveMatchesResponse.fromJson(response.data);

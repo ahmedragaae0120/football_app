@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -73,14 +74,49 @@ class _ProfileTabState extends State<ProfileTab> {
                   ),
                 ),
               ),
-              Text(
-                "#liverbool YNWA",
-                style: Theme.of(context).textTheme.titleLarge,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    state.user?.biography ?? "add status",
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const SizedBox(
+                    width: 4,
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) => BackdropFilter(
+                                filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                                child: Center(
+                                  child: Container(
+                                    color: Colors.transparent,
+                                    child: Material(
+                                        color: Colors.transparent,
+                                        child: CustomListTile(
+                                          title: "Biography",
+                                          subTitle: state.user?.biography ?? "",
+                                          icon: Icons.textsms,
+                                          isEditing: true,
+                                        )),
+                                  ),
+                                ),
+                              ));
+                    },
+                    icon: Icon(
+                      Icons.edit,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
+                ],
               ),
               CustomListTile(
                 title: "Name",
                 subTitle: state.user?.name ?? "",
                 icon: Icons.person,
+                isEditing: false,
               ),
               const SizedBox(
                 height: 20,
@@ -89,6 +125,7 @@ class _ProfileTabState extends State<ProfileTab> {
                 title: "Email",
                 subTitle: state.user?.email ?? "",
                 icon: Icons.email_rounded,
+                isEditing: false,
               ),
               const SizedBox(
                 height: 20,
@@ -97,17 +134,16 @@ class _ProfileTabState extends State<ProfileTab> {
                 title: "Favourite Team",
                 subTitle: "Liverbool",
                 icon: Icons.stadium_rounded,
+                isEditing: false,
               ),
               const SizedBox(
                 height: 20,
               ),
-              InkWell(
-                onTap: ProfileCubit.get(context).logOut,
-                child: const CustomListTile(
-                  title: "Logout",
-                  subTitle: "Email",
-                  icon: Icons.logout,
-                ),
+              const CustomListTile(
+                title: "Logout",
+                subTitle: "Email",
+                icon: Icons.logout,
+                isEditing: false,
               ),
             ],
           ),

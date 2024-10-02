@@ -30,6 +30,14 @@ class FirestoreHelper {
         favouriteTeam: null));
   }
 
+  static Future<void> updateProfileData(
+      {required String userId,
+      required String edit,
+      required String textcontroller}) async {
+    var document = getUserCollections().doc(userId);
+    await document.update({edit: textcontroller});
+  }
+
   static Future<void> updateProfileImage(
       {required String userId, required String pathImage}) async {
     var document = getUserCollections().doc(userId);

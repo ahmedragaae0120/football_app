@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:football_app/core/firebase/firestore_helper.dart';
 import 'package:football_app/core/local/shared_preferences_helper.dart';
@@ -42,6 +43,23 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(ProfileSuccessState(databaseUser));
     } catch (error) {
       emit(ProfileErrorState(error.toString()));
+    }
+  }
+
+  editDataUser(
+      {required String textcontroller,
+      required String edit,
+      required context}) async {
+    try {
+      String userid = SharedPreferencesHelper.getId();
+      await FirestoreHelper.updateProfileData(
+          userId: userid, edit: edit, textcontroller: textcontroller);
+      await getDataUser();
+      Navigator.pop(context);
+    } catch (error) {
+      print("error edit:$error");
+      emit(ProfileErrorState(error.toString()));
+      Navigator.pop(context);
     }
   }
 

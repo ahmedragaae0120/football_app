@@ -33,10 +33,6 @@ class EventsWidget extends StatelessWidget {
               event.player?.name ?? "",
               style: const TextStyle(color: Colors.white, fontSize: 18),
             ),
-            Text(
-              event.player?.name ?? "",
-              style: const TextStyle(color: Colors.white, fontSize: 18),
-            ),
           ],
         ),
         if (event.assist?.name != null)

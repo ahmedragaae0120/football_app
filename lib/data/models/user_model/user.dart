@@ -15,8 +15,8 @@ class UserModel {
 
   UserModel.fromFirestore(Map<String, dynamic> data) {
     name = data['name'];
-    email = data['id'];
-    id = data['email'];
+    email = data['email'];
+    id = data['id'];
     profileImage = data["profileImage"];
     biography = data['biography'];
     favouriteTeam = data['favouriteTeam'];

@@ -31,6 +31,7 @@ class HomeView extends StatelessWidget {
       // },
       builder: (context, state) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           bottomNavigationBar: FlashyTabBar(
             backgroundColor: Theme.of(context).colorScheme.tertiary,
             showElevation: true,

@@ -27,10 +27,11 @@ class ProfileCubit extends Cubit<ProfileState> {
       String url = await taskSnapshot.ref.getDownloadURL();
       String userid = SharedPreferencesHelper.getId();
       await FirestoreHelper.updateProfileImage(userId: userid, pathImage: url);
-      await getDataUser();
-      log(url);
     } catch (error) {
-      log(error.toString());
+      if (error.toString() ==
+          "[firebase_storage/object-not-found] No object exists at the desired reference.") {
+        return uploadImage(context, image);
+      }
       emit(ProfileErrorState(error.toString()));
     }
   }
@@ -55,11 +56,15 @@ class ProfileCubit extends Cubit<ProfileState> {
       await FirestoreHelper.updateProfileData(
           userId: userid, edit: edit, textcontroller: textcontroller);
       await getDataUser();
-      Navigator.pop(context);
+      if (Navigator.canPop(context)) {
+        Navigator.pop(context);
+      }
     } catch (error) {
       print("error edit:$error");
       emit(ProfileErrorState(error.toString()));
-      Navigator.pop(context);
+      if (Navigator.canPop(context)) {
+        Navigator.pop(context);
+      }
     }
   }
 

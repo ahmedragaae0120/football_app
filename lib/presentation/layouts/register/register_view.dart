@@ -31,7 +31,8 @@ class _RegisterViewState extends State<RegisterView> {
     return BlocConsumer<RegisterCubit, RegisterState>(
       listener: (context, state) {
         if (state is RegisterSuccessState) {
-          Navigator.pushNamed(context, HomeView.routeName);
+          Navigator.pushNamedAndRemoveUntil(
+              context, HomeView.routeName, (route) => false);
           CustomSnackBar.showOverlaySnackBar(
               context: context, message: "Register Success", positive: true);
         }

@@ -37,19 +37,6 @@ class CustomAppbar {
               ),
             ),
             const SizedBox(
-              width: 30,
-            ),
-            Transform.scale(
-              scale: 1.2,
-              alignment: Alignment.center,
-              child: SvgPicture.asset(
-                AssetsManager.assetsIconsNotification,
-                color: Theme.of(context).colorScheme.onPrimary,
-                fit: BoxFit.contain,
-                alignment: Alignment.center,
-              ),
-            ),
-            const SizedBox(
               width: 20,
             ),
           ],

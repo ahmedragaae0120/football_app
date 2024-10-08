@@ -23,7 +23,9 @@ class _ProfileTabState extends State<ProfileTab> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback(
       (timeStamp) {
-        context.read<ProfileCubit>().getDataUser();
+        if (mounted) {
+          context.read<ProfileCubit>().getDataUser();
+        }
       },
     );
   }
@@ -42,7 +44,7 @@ class _ProfileTabState extends State<ProfileTab> {
       if (state is ProfileErrorState) {
         return Center(
           child: Text(
-            "Cheek your internet connecions",
+            state.error,
             style: Theme.of(context).textTheme.titleLarge,
           ),
         );
@@ -78,7 +80,9 @@ class _ProfileTabState extends State<ProfileTab> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    state.user?.biography ?? "add status",
+                    state.user?.biography == ""
+                        ? "add status"
+                        : state.user?.biography ?? "",
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(
@@ -123,16 +127,16 @@ class _ProfileTabState extends State<ProfileTab> {
               ),
               CustomListTile(
                 title: "Email",
-                subTitle: state.user?.email ?? "",
+                subTitle: "${state.user?.email}",
                 icon: Icons.email_rounded,
                 isEditing: false,
               ),
               const SizedBox(
                 height: 20,
               ),
-              const CustomListTile(
+              CustomListTile(
                 title: "Favourite Team",
-                subTitle: "Liverbool",
+                subTitle: state.user?.favouriteTeam ?? "",
                 icon: Icons.stadium_rounded,
                 isEditing: false,
               ),
@@ -158,26 +162,13 @@ class _ProfileTabState extends State<ProfileTab> {
     var imagePick = await picker.pickImage(source: ImageSource.gallery);
     if (imagePick != null) {
       image = File(imagePick.path);
-      setState(() {});
-      ProfileCubit.get(context).uploadImage(context, image);
+      if (mounted) {
+        // تحقق من أن الـ widget لا يزال موجودًا
+
+        ProfileCubit.get(context).uploadImage(context, image);
+        setState(() {});
+      }
     }
   }
 
-  // Future<void> uploadImage(context) async {
-  //   try {
-  //     FirebaseStorage storage = FirebaseStorage.instance;
-  //     Reference ref = storage.ref().child(p.basename(image!.path));
-  //     UploadTask storageUploadTask = ref.putFile(image!);
-  //     TaskSnapshot taskSnapshot = storageUploadTask.snapshot;
-  //     String url = await taskSnapshot.ref.getDownloadURL();
-  //     String userid = SharedPreferencesHelper.getId();
-  //     await FirestoreHelper.updateProfileImage(userId: userid, pathImage: url);
-  //     log(url);
-  //     log(userid);
-  //   } catch (error) {
-  //     log(error.toString());
-  //     CustomSnackBar.showOverlaySnackBar(
-  //         context: context, message: error.toString(), positive: false);
-  //   }
-  // }
 }
